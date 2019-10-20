@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+</head>
+<body>
+	<form method="post" action="#" th:action="@{/Login}" th:object="${User}">
+	<h1>ログイン画面</h1>
+		<p>ユーザーID：
+			<input type="text" name="user_id" />
+		</p>
+		<p>パスワード：
+			<input type="text" name="password" />
+		</p>
+	<br/>
+		<p><span th:text="${Login_Error_Msg}"></span></p>
+	<input type="submit" value="ログイン" />
+	</form>
+	<p>テスト用のユーザーIDは「user」、パスワードは「password」だよ！</p>
+
+	<br>
+
+	<p>※新規にユーザー登録をする方はこちら※</p>
+	<form method="post" action="#" th:action="@{/Subscribe}" th:object="${User}">
+		<p>ユーザーID：
+			<input type="text" name="user_id" />
+		</p>
+		<p>パスワード：
+			<input type="text" name="password" />
+		</p>
+	<br/>
+		<p><span th:text="${Insert_Msg}"></span></p>
+	<input type="submit" value="新規登録" />
+	</form>
+</body>
+</html>

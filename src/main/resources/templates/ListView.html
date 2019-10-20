@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ListView</title>
+</head>
+<body>
+	<form method="post" th:action="ListView" th:object="${orderList}">
+	<h1>商品リスト</h1>
+	<table border="1" style="border-collapse: collapse">
+		<tr>
+			<th>商品ID</th>
+			<th>商品名</th>
+			<th>価格（円）</th>
+			<th>個数</th>
+		</tr>
+
+		<tr th:each="item: ${itemList}">
+			<td th:text="${item.item_id}" />
+			<td th:text="${item.name}" />
+			<td th:text="${item.price}" />
+			<td><input type="text" name="details[' + __${itemStat.index}__ + '].orderNum" value="0" /></td>
+			<input type="hidden" name="details[' + __${itemStat.index}__ + '].orderId" th:value="${item.item_id}"/>
+	    	<input type="hidden" name="details[' + __${itemStat.index}__ + '].orderName" th:value="${item.name}"/>
+	    	<input type="hidden" name="details[' + __${itemStat.index}__ + '].orderPrice" th:value="${item.price}"/>
+
+		</tr>
+	</table>
+	<br/>
+		<input type="submit" value="カートに追加" />
+	</form>
+
+<h1>注文リスト</h1>
+	<table border="1" style="border-collapse: collapse">
+		<tr>
+			<th>商品ID</th>
+			<th>商品名</th>
+			<th>価格（円）</th>
+			<th>個数</th>
+		</tr>
+
+		<tr th:each="order: ${orderList}">
+			<td th:text="${order.item_id}" />
+			<td th:text="${order.name}" />
+			<td th:text="${order.price}" />
+			<td th:text="${order.num}" />
+		</tr>
+	</table>
+	
+	
+	
+	<br/>
+	<p th:text="'合計金額：' + ${TotalPrice} + '円'" />
+	<input type="hidden" name="TotalPrice" th:value="${TotalPrice}"/>
+	<br/>
+
+</body>
+</html>
